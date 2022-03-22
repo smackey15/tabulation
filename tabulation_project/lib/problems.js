@@ -65,6 +65,18 @@ function stepper(nums, memo = {}) {
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
 function maxNonAdjacentSum(nums) {
 
+    if (nums.length === 0) return 0;
+    
+    let table = new Array(nums.length).fill(0);
+    table[0] = nums[0];
+
+    for (let i = 1; i < table.length; i++) {
+        let skipLeftNeighbor = table[i - 2] === undefined ? 0 : table[i - 2];
+        let includeThisNum = skipLeftNeighbor + nums[i];
+        let notIncludeThisNum = table[i - 1]
+        table[i] = Math.max(includeThisNum, notIncludeThisNum)
+    }
+    return table[table.length - 1];
 }
 
 
