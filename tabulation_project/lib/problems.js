@@ -44,14 +44,14 @@ function stepper(nums, memo = {}) {
     let maxRange = nums[0];
     for (let step = 1; step <= maxRange; step++) {
        if (stepper(nums.slice(step), memo)) {
-            
+        memo[nums.length] = true;
             return true;
        }
     }
     memo[nums.length] = false;
     return false;
 }
-// memo[nums.length] = true;
+// 
 
 
 // Write a function, maxNonAdjacentSum(nums), that takes in an array of nonnegative numbers.
